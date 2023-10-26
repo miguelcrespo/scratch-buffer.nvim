@@ -54,6 +54,14 @@ Install with your plugin manager of choice. Example for `lazy`
 
 After installing the plugin, just open Neovim as you normally do and you will see the new scratch buffer 🚀
 
+To evaluate a piece of code inside the buffer you can use the default Conjure mappings (it won't work if you have not mapped the `localleader`):
+
+- `<localleader>er` Evaluate the root form under the cursor 
+- `<localleade>ee` Evaluate the current form under the cursor
+- `<localleader>eb` Evaluate the current buffer contents
+
+[Conjure mappings](https://github.com/Olical/conjure/blob/master/doc/conjure.txt)
+
 ## Credits
 - Startup ASCII art taken from [ascii.nvim](https://github.com/MaximilianLloyd/ascii.nvim/)
 - [Conjure](https://github.com/Olical/conjure) for being such an amazing plugin
