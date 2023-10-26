@@ -4,6 +4,12 @@ Get a scratch buffer when Neovim starts that you can use to easily execute small
 
 Heavily inspired by the Emacs Scratch buffer.
 
+
+
+https://github.com/miguelcrespo/scratch-buffer.nvim/assets/5839623/810ec94b-6f19-47fe-a5de-7cf0a9aae66b
+
+
+
 ## Features
 - Support multiple languages:
 	- lua (default)
