@@ -51,6 +51,10 @@ local function setup_autocmd(options)
   return vim.api.nvim_create_autocmd("VimEnter", {group = augroup, desc = "Set a fennel scratch buffer on load", once = true, callback = _4_})
 end
 local function setup(user_options)
+  if (#vim.v.argv > 2) then
+    return
+  else
+  end
   local default_options = {filetype = "lua", buffname = "*scratch*", with_lsp = true, with_neovim_version = true, heading = default_header}
   local options = vim.tbl_extend("force", default_options, (user_options or {}))
   if (maps[options.filetype] == nil) then

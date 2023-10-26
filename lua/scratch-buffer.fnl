@@ -58,6 +58,7 @@
                                 :callback (fn [] (set-scratch-buffer options))}))
 
 (fn setup [user_options]
+  (when (> (length vim.v.argv) 2) (lua :return)) ; Return when the user used Nvim to open a file directly
   (let [default_options {:filetype :lua
                          :buffname :*scratch*
                          :with_lsp true
