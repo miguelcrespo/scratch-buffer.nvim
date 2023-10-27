@@ -45,6 +45,7 @@
 (fn set-scratch-buffer [options]
   (let [buf (create-buffer options)
         line_number (vim.api.nvim_buf_line_count buf)]
+    (vim.api.nvim_buf_delete (vim.api.nvim_get_current_buf) {}) ; Delete No Name buffer
     (vim.api.nvim_win_set_buf 0 buf)
     (vim.api.nvim_win_set_cursor 0 [line_number 0]) ; Running :LspStart doesn't seem to trigger any error if there's no LSP configure
     (when (= options.with_lsp true)
@@ -60,7 +61,8 @@
                                 :callback (fn [] (set-scratch-buffer options))}))
 
 (fn setup [user_options]
-  (when (> (length vim.v.argv) 2) (lua :return)) ; Return when the user used Nvim to open a file directly
+  (when (not (= (vim.fn.argc) 0))
+    (lua :return)) ; Return when the user used Nvim to open a file directly
   (let [default_options {:filetype :lua
                          :buffname :*scratch*
                          :with_lsp true

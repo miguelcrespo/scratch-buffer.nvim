@@ -35,6 +35,7 @@ end
 local function set_scratch_buffer(options)
   local buf = create_buffer(options)
   local line_number = vim.api.nvim_buf_line_count(buf)
+  vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), {})
   vim.api.nvim_win_set_buf(0, buf)
   vim.api.nvim_win_set_cursor(0, {line_number, 0})
   if (options.with_lsp == true) then
@@ -51,7 +52,7 @@ local function setup_autocmd(options)
   return vim.api.nvim_create_autocmd("VimEnter", {group = augroup, desc = "Set a fennel scratch buffer on load", once = true, callback = _4_})
 end
 local function setup(user_options)
-  if (#vim.v.argv > 2) then
+  if not (vim.fn.argc() == 0) then
     return
   else
   end
