@@ -38,10 +38,10 @@ local function set_scratch_buffer(options)
   vim.api.nvim_win_set_buf(0, buf)
   vim.api.nvim_win_set_cursor(0, {line_number, 0})
   if (options.with_lsp == true) then
-    return vim.api.nvim_exec(":LspStart", nil)
+    vim.api.nvim_exec(":LspStart", nil)
   else
-    return nil
   end
+  return vim.api.nvim_buf_set_name(buf, options.buffname)
 end
 local function setup_autocmd(options)
   local augroup = vim.api.nvim_create_augroup("ScratchBuffer", {clear = true})

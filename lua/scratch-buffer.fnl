@@ -13,6 +13,7 @@
              :python {:extension :py :comment "#"}})
 
 (fn get-heading [options]
+  "Generate temporal name so the LSP can start on a 'file'"
   (let [heading []
         version (vim.version)
         comment_symbol (. (. maps options.filetype) :comment)
@@ -47,7 +48,8 @@
     (vim.api.nvim_win_set_buf 0 buf)
     (vim.api.nvim_win_set_cursor 0 [line_number 0]) ; Running :LspStart doesn't seem to trigger any error if there's no LSP configure
     (when (= options.with_lsp true)
-      (vim.api.nvim_exec ":LspStart" nil))))
+      (vim.api.nvim_exec ":LspStart" nil)) ; Set the name of the buffer so it looks good
+    (vim.api.nvim_buf_set_name buf options.buffname)))
 
 (fn setup-autocmd [options]
   (local augroup (vim.api.nvim_create_augroup :ScratchBuffer {:clear true}))
